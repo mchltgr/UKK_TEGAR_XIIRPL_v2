@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = trim($_POST['username'] ?? '');
   $password = $_POST['password'] ?? '';
 
-  // Ambil juga kolom "nama" karena dipakai di header.php
   $u = row("SELECT id, nama, username, password, role FROM users WHERE username=? LIMIT 1", [$username]);
 
   if ($u && is_string($password) && password_verify($password, $u['password'])) {
